@@ -2,7 +2,6 @@ const path = require('path');
 const MiniCssExtraPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'development',
@@ -20,15 +19,6 @@ module.exports = {
         use: {
           loader: 'ts-loader',
         },
-      },
-      {
-        test: /\.vue/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'vue-loader',
-          },
-        ],
       },
       {
         test: /\.js/,
@@ -70,6 +60,7 @@ module.exports = {
             options: {
               esModule: false,
               name:'images/[name].[ext]',
+              publicPath: '/',
             },
           },
           {
@@ -101,7 +92,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new VueLoaderPlugin(),
     new MiniCssExtraPlugin({
       filename:'./stylesheets/main.css',
     }),
